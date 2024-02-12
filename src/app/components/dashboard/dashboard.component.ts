@@ -7,11 +7,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavbarComponent, MatTableModule, MatButtonModule, MatIconModule],
+  imports: [
+    NavbarComponent,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule,
+    RouterOutlet,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })

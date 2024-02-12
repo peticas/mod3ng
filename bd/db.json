@@ -1,0 +1,102 @@
+{
+  "estudiantes": [
+    {
+      "id": "1",
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "edad": 20,
+      "carrera": "Ingenieria de sistemas"
+    },
+    {
+      "id": "2",
+      "nombre": "Pedro",
+      "apellido": "Salvatierra",
+      "edad": 18,
+      "carrera": "Administración de empresa"
+    },
+    {
+      "id": "3",
+      "nombre": "Maria",
+      "apellido": "Lopez",
+      "edad": 26,
+      "carrera": "Arquitectura"
+    },
+    {
+      "id": "4",
+      "nombre": "Alejandra",
+      "apellido": "Garcia",
+      "edad": 27,
+      "carrera": "Administración de empresa"
+    },
+    {
+      "id": "5",
+      "nombre": "Alberto",
+      "apellido": "Quiroga",
+      "edad": 22,
+      "carrera": "Arquitectura"
+    },
+    {
+      "id": "6",
+      "nombre": "Rosario",
+      "apellido": "Paredes",
+      "edad": 24,
+      "carrera": "Ingenieria Comercial"
+    },
+    {
+      "id": "7",
+      "nombre": "Armando",
+      "apellido": "Iraola",
+      "edad": 27,
+      "carrera": "Contaduria Publica"
+    },
+    {
+      "id": "8",
+      "nombre": "Pamela",
+      "apellido": "Miranda",
+      "edad": 29,
+      "carrera": "Derecho"
+    },
+    {
+      "id": "9",
+      "nombre": "Patricia",
+      "apellido": "Paredes",
+      "edad": 26,
+      "carrera": "Ingenieria Comercial"
+    },
+    {
+      "id": "10",
+      "nombre": "Luz",
+      "apellido": "Villarroel",
+      "edad": 26,
+      "carrera": "Ingenieria Comercial"
+    },
+    {
+      "id": "549a",
+      "nombre": "Alfredo",
+      "apellido": "Iriarte",
+      "edad": 26,
+      "carrera": "Ingenieria de sistemas"
+    },
+    {
+      "id": "2fbd",
+      "nombre": "Julian",
+      "apellido": "Salazar",
+      "edad": 25,
+      "carrera": "Bioquimica"
+    },
+    {
+      "id": "abcf",
+      "nombre": "Patricia",
+      "apellido": "Fernandez",
+      "edad": 27,
+      "carrera": "Bioquimica"
+    },
+    {
+      "id": "2d33",
+      "nombre": "Alejandra",
+      "apellido": "Lelargue",
+      "edad": 29,
+      "carrera": "Bioquimica"
+    }
+  ]
+}
