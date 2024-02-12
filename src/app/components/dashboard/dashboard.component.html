@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<h3 class="pdn-izq">Lista de estudiantes</h3>
+
+<div class="container">
+  <div class="addStud">
+    <button mat-fab color="primary" routerLink="/addestudiate">
+      <mat-icon>person_add</mat-icon>
+    </button>
+  </div>
+  <table mat-table [dataSource]="estudiantes" class="mat-elevation-z8">
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef>Apellido</th>
+      <td mat-cell *matCellDef="let element">{{ element.apellido }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="edad">
+      <th mat-header-cell *matHeaderCellDef>Edad</th>
+      <td mat-cell *matCellDef="let element">{{ element.edad }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="carrera">
+      <th mat-header-cell *matHeaderCellDef>Carrera</th>
+      <td mat-cell *matCellDef="let element">{{ element.carrera }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteStudent(element.id, element.nombre, element.apellido)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

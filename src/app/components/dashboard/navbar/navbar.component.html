@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <mat-icon>javascript</mat-icon>-<mat-icon>html</mat-icon>-<mat-icon
+    >css</mat-icon
+  >
+  <span> | Modulo 3 NG</span>
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>dashboard</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/dashboard">
+      <mat-icon>group</mat-icon><span>Estudiantes</span>
+    </button>
+    <button mat-menu-item routerLink="/addestudiate">
+      <mat-icon>person_add</mat-icon><span>Nuevo est.</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="formulario">
+  <mat-card class="data-card">
+    <mat-card-header>
+      <div mat-card-avatar class="data-header-image"></div>
+      <mat-card-title>Nuevo Estudiante</mat-card-title>
+      <mat-card-subtitle>Registro</mat-card-subtitle>
+    </mat-card-header>
+    <div class="frmnew">
+      <form
+        class="data-form"
+        [formGroup]="formNewStudent"
+        (ngSubmit)="addStudent()"
+      >
+        <mat-form-field class="data-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+        </mat-form-field>
+
+        <mat-form-field class="data-full-width">
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="apellido" />
+        </mat-form-field>
+
+        <mat-form-field class="data-full-width">
+          <mat-label>Edad</mat-label>
+          <input matInput formControlName="edad" type="number" />
+        </mat-form-field>
+
+        <mat-form-field class="data-full-width">
+          <mat-label>Carrera</mat-label>
+          <input matInput formControlName="carrera" />
+        </mat-form-field>
+        <mat-card-actions>
+          <button
+            mat-button
+            color="primary"
+            type="submit"
+            [disabled]="!formNewStudent.valid"
+          >
+            Guardar
+          </button>
+        </mat-card-actions>
+      </form>
+    </div>
+    <mat-card-content>
+      <p>
+        Este es el formulario de registro de nuevo estudiante (Modulo 3 NG).
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
