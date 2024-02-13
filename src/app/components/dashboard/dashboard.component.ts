@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ApiService } from '../../services/api.service';
 import { IEstudiante } from '../models/estudiante';
@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { RouterOutlet, RouterModule } from '@angular/router';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,12 +20,16 @@ import { RouterOutlet, RouterModule } from '@angular/router';
     MatIconModule,
     RouterModule,
     RouterOutlet,
+    MatPaginatorModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
   estudiantes: IEstudiante[] = [];
+  dataSource: any;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   displayedColumns: string[] = [
     'nombre',
@@ -47,6 +52,8 @@ export class DashboardComponent implements OnInit {
   showEstudiantes() {
     this.apiService.getEstudiantes().subscribe((estud: IEstudiante[]) => {
       this.estudiantes = estud;
+      this.dataSource = new MatTableDataSource<IEstudiante>(this.estudiantes);
+      this.dataSource.paginator = this.paginator;
     });
   }
 

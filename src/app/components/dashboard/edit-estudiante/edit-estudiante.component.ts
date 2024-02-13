@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -14,54 +14,62 @@ import {
 import { ApiService } from '../../../services/api.service';
 import { IEstudiante } from '../../models/estudiante';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-estudiante',
+  selector: 'app-edit-estudiante',
   standalone: true,
   imports: [
-    NavbarComponent,
-    MatButtonModule,
     MatCardModule,
-    FormsModule,
-    MatFormFieldModule,
+    MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
+    NavbarComponent,
+    FormsModule,
+    MatFormFieldModule,
   ],
-  templateUrl: './add-estudiante.component.html',
-  styleUrl: './add-estudiante.component.css',
+  templateUrl: './edit-estudiante.component.html',
+  styleUrl: './edit-estudiante.component.css',
 })
-export class AddEstudianteComponent {
+export class EditEstudianteComponent implements OnInit {
+  estudiante: IEstudiante | undefined;
   constructor(
     private apiService: ApiService,
     private toastService: ToastrService,
-    private router: Router
+    private router: Router,
+    private activeRouter: ActivatedRoute
   ) {}
 
-  formNewStudent = new FormGroup({
+  ngOnInit(): void {
+    this.loadEstudiante(<string>this.activeRouter.snapshot.paramMap.get('id'));
+  }
+
+  formEditStudent = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
     apellido: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
     ]),
-    //edad: new FormControl<number | null>(1, [Validators.required]),
     edad: new FormControl<number>(1, {
       validators: Validators.required,
       nonNullable: true,
     }),
     carrera: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(10),
     ]),
   });
 
-  addStudent(): void {
+  editStudent(): void {
     this.apiService
-      .createEstudiante(<IEstudiante>this.formNewStudent.value)
+      .updateEstudiante(
+        <string>this.estudiante?.id,
+        <IEstudiante>this.formEditStudent.value
+      )
       .subscribe((datos) => {
-        console.log('Guardado');
+        console.log('Editado');
         this.toastService.success(
-          'Estudiante Registrado...',
+          'Estudiante Editado...',
           '.:REGISTRO DE ESTUDIANTES:.',
           {
             positionClass: 'toast-top-center',
@@ -69,5 +77,20 @@ export class AddEstudianteComponent {
         );
         this.router.navigate(['/dashboard']);
       });
+  }
+
+  loadEstudiante(id: string) {
+    this.apiService.getEstudiante(id).subscribe((estud: IEstudiante) => {
+      this.estudiante = estud;
+      //console.log(this.estudiante);
+      this.formEditStudent.controls['apellido'].setValue(
+        this.estudiante.apellido
+      );
+      this.formEditStudent.controls['carrera'].setValue(
+        this.estudiante.carrera
+      );
+      this.formEditStudent.controls['edad'].setValue(this.estudiante.edad);
+      this.formEditStudent.controls['nombre'].setValue(this.estudiante.nombre);
+    });
   }
 }

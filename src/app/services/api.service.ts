@@ -16,7 +16,7 @@ export class ApiService {
   }
 
   getEstudiante(id: string): Observable<IEstudiante> {
-    return this.http.get<IEstudiante>(this.urlApi);
+    return this.http.get<IEstudiante>(`${this.urlApi}/${id}`);
   }
 
   createEstudiante(estudiante: IEstudiante): Observable<any> {
@@ -24,7 +24,7 @@ export class ApiService {
   }
 
   updateEstudiante(id: string, estudiante: IEstudiante) {
-    return this.http.put(`${this.urlApi}${id}`, estudiante);
+    return this.http.put(`${this.urlApi}/${id}`, estudiante);
   }
 
   deleteEstudiante(id: string): Observable<any> {
